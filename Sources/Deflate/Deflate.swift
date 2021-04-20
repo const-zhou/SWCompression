@@ -33,6 +33,9 @@ public class Deflate: DecompressionAlgorithm {
 
         while true {
             /// Is this a last block?
+            if bitReader.bitsLeft <= 0 {
+                break
+            }
             let isLastBit = bitReader.bit()
             /// Type of the current block.
             let blockType = bitReader.int(fromBits: 2)
